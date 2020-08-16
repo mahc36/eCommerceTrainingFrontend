@@ -11,7 +11,7 @@ export class UserListComponent implements OnInit{
     constructor(private userService: UserService) { }
 
     errorMessage: string;
-    pageTitle: string = "User List component";
+    pageTitle = 'User List component';
     showImage = false;
 
     _listFilter = '';

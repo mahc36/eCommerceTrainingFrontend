@@ -1,15 +1,15 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
   <div class="container">
-    <a class="navbar-brand"><h5>Welcome to {{title}}</h5></a>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <a class="navbar-brand" ><h5>Welcome to {{title}}</h5></a>
+    <ul class='nav nav-pills'>
+      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/users']">Users</a></li>
+      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/register']">Register</a></li>
+    </ul>
   </div>
 </nav>
 
 <div class="container">
   <div class="tra-container">
-    <user-list></user-list>
+    <router-outlet></router-outlet>
   </div>
 </div>
