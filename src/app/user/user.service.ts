@@ -10,11 +10,19 @@ import { IUser } from './user';
 export class UserService {
 
     private baseUserServiceUrl = 'http://localhost:8383/user';
-    private createUserUrl = this.baseUserServiceUrl + "/create";
-    private findAllUsersUrl = this.baseUserServiceUrl + "/findAllUsers";
+    private createUserUrl = this.baseUserServiceUrl + '/create';
+    private findAllUsersUrl = this.baseUserServiceUrl + '/findAllUsers';
 
     constructor(private http: HttpClient) { }
-    
+
+    createUser(user: IUser): Observable<IUser[]> {
+      return this.http.post<IUser[]>(this.createUserUrl, user)
+        .pipe(
+          tap( ()  => console.log('User creation done')),
+          catchError(this.handleError)
+        );
+    }
+
     getUsers(): Observable<IUser[]> {
         return this.http.get<IUser[]>(this.findAllUsersUrl)
           .pipe(
@@ -33,7 +41,7 @@ export class UserService {
         } else {
           // The backend returned an unsuccessful response code.
           // The response body may contain clues as to what went wrong,
-          errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+          errorMessage = `Server returned code: ${err.status}, error message is: ${err.error.message}`;
         }
         console.error(errorMessage);
         return throwError(errorMessage);
