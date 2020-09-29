@@ -1,37 +1,53 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()" class="tra-form">
 
-  <div class="form-group">
+  <div class="form-group tra-form-input-large">
     <label for="name">Name</label>
     <input formControlName="name" id="name" type="text" class="form-control">
-    <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+    <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger tra-alert">
       <div *ngIf="f.name.errors.required">Name is required.</div>
       <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group tra-form-input-large">
     <label for="name">Lastname</label>
     <input formControlName="lastName" id="lastName" type="text" class="form-control">
-    <div *ngIf="f.lastName.touched && f.lastName.invalid" class="alert alert-danger">
+    <div *ngIf="f.lastName.touched && f.lastName.invalid" class="alert alert-danger tra-alert">
       <div *ngIf="f.lastName.errors.required">LastName is required.</div>
       <div *ngIf="f.lastName.errors.minlength">LastName should be 3 character.</div>
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="form-group tra-form-input-large">
     <label for="email">Email</label>
     <input formControlName="email" id="email" type="text" class="form-control">
-    <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+    <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger tra-alert">
       <div *ngIf="f.email.errors.required">Email is required.</div>
       <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
     </div>
   </div>
 
-  <button class="btn btn-info" type="button" (click)="resetValue()">Reset Value</button>
-  <button class="btn btn-primary" type="submit">Submit</button>
+  <select class="form-group tra-form-input-large" formControlName="gender" id="gender">
+    <option *ngFor="let gender of getGenders()" value="{{gender}}">
+      {{gender}}
+    </option>
+  </select>
+
+  <div class="tra-centered">
+    <div class="tra-button-wrapper register-btn-wp">
+      <button class="btn tra-btn tra-btn-light" type="submit">Submit</button>
+      <button class="btn tra-btn tra-btn-dark" type="button" (click)="resetValue()">Reset Value</button>
+    </div>
+  </div>
 </form>
 
-<div *ngIf='errorMessage'
+<div *ngIf='errorMessage && !successful'
      class='alert alert-danger'>
   Error: {{ errorMessage }}
 </div>
+
+<div *ngIf='successful'
+     class='alert alert-success'>
+     User Created
+</div>
+

@@ -1,0 +1,81 @@
+*:focus{
+  outline: 3px solid cadetblue;
+}
+
+
+.register-btn-wp {
+   width: 500px;
+  max-width: 500px;
+}
+
+// TODO - move this piece to another file
+// TODO - implement autoprefixer with mix...
+.tra-form{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.tra-form-input-small {
+  width: 25%;
+}
+
+.tra-form-input-medium {
+  width: 50%;
+}
+
+.tra-form-input-large {
+  width: 75%;
+}
+
+.tra-form-input-big {
+  width: 100%;
+}
+
+.tra-alert{
+  margin: 10px 0;
+}
+
+// TODO - move this piece to another file
+// TODO - implement autoprefixer with mix...
+.tra-centered{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// TODO - move this piece to another file
+// TODO - implement autoprefixer with mix...
+.tra-button-wrapper{
+  display: flex;
+  flex-wrap: nowrap;
+
+  .tra-btn{
+    flex-grow: 1;
+    height: 70px;
+    border-radius: 0;
+    text-transform: uppercase;
+  }
+
+  .tra-btn-dark{
+    background-color: black;
+    color: orange;
+    &:hover{
+      background-color: orange;
+      color: black;
+    }
+  }
+
+  .tra-btn-light{
+    background-color: orange;
+    color: black;
+    &:hover{
+      background-color: black;
+      color: orange;
+    }
+  }
+
+}
