@@ -12,6 +12,7 @@ export class UserRegistrationComponent implements OnInit {
 
   errorMessage: string;
   successful: boolean;
+  formSent: boolean;
 
   constructor(private userService: UserService) { }
 
@@ -27,6 +28,7 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   resetValue(){
+    this.formSent = false;
     this.form.reset({name: '', lastName: '', email: '', gender: '', bornDate: ''});
   }
 
@@ -35,6 +37,7 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   submit(){
+    this.formSent = true;
     if ( this.form.status === 'VALID' ){
       const user = {
         name: this.form.controls.name.value,
@@ -55,7 +58,7 @@ export class UserRegistrationComponent implements OnInit {
       );
     }
     else {
-      alert('There are some errors to fix');
+      console.log('There are some errors to fix');
     }
   }
 

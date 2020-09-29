@@ -1,18 +1,35 @@
 <form [formGroup]="form" (ngSubmit)="submit()" class="tra-form">
 
+
+  <div style="display: none">
+    <div>
+      {{form.status}}
+    </div>
+    <div>
+      {{form.dirty}}
+    </div>
+    <div>
+      {{form.valid}}
+    </div>
+    <div>
+      {{form.touched}}
+    </div>
+  </div>
+
+
   <div class="form-group tra-form-input-large">
     <label for="name">Name</label>
     <input formControlName="name" id="name" type="text" class="form-control">
-    <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger tra-alert">
+    <div *ngIf="(f.name.touched && f.name.invalid) || (formSent && f.name.invalid)" class="alert alert-danger tra-alert">
       <div *ngIf="f.name.errors.required">Name is required.</div>
       <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
     </div>
   </div>
 
   <div class="form-group tra-form-input-large">
-    <label for="name">Lastname</label>
+    <label for="lastName">Lastname</label>
     <input formControlName="lastName" id="lastName" type="text" class="form-control">
-    <div *ngIf="f.lastName.touched && f.lastName.invalid" class="alert alert-danger tra-alert">
+    <div *ngIf="(f.lastName.touched && f.lastName.invalid) || (formSent && f.lastName.invalid)" class="alert alert-danger tra-alert">
       <div *ngIf="f.lastName.errors.required">LastName is required.</div>
       <div *ngIf="f.lastName.errors.minlength">LastName should be 3 character.</div>
     </div>
@@ -21,17 +38,21 @@
   <div class="form-group tra-form-input-large">
     <label for="email">Email</label>
     <input formControlName="email" id="email" type="text" class="form-control">
-    <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger tra-alert">
+    <div *ngIf="(f.email.touched && f.email.invalid) || (formSent && f.email.invalid)" class="alert alert-danger tra-alert">
       <div *ngIf="f.email.errors.required">Email is required.</div>
       <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
     </div>
   </div>
 
-  <select class="form-group tra-form-input-large" formControlName="gender" id="gender">
-    <option *ngFor="let gender of getGenders()" value="{{gender}}">
-      {{gender}}
-    </option>
-  </select>
+
+  <div class="form-group tra-form-input-large">
+    <label for="gender">Gender</label>
+    <select formControlName="gender" id="gender" class="form-control">
+      <option *ngFor="let gender of getGenders()" value="{{gender}}">
+        {{gender}}
+      </option>
+    </select>
+  </div>
 
   <div class="tra-centered">
     <div class="tra-button-wrapper register-btn-wp">
@@ -50,4 +71,11 @@
      class='alert alert-success'>
      User Created
 </div>
+
+<div *ngIf='form.status == "INVALID" && formSent'
+     class='alert alert-warning'>
+  Please fill all required info
+</div>
+
+
 
