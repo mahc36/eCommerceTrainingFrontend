@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-import {Gender} from '../user';
+import { Gender } from '../user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.less']
 })
-export class UserRegistrationComponent implements OnInit {
+export class UserRegistrationComponent implements OnInit, OnDestroy {
 
   errorMessage: string;
   successful: boolean;
   formSent: boolean;
+  subscription: Subscription;
 
   constructor(private userService: UserService) { }
 
@@ -46,7 +48,7 @@ export class UserRegistrationComponent implements OnInit {
         gender: this.form.controls.gender.value,
         bornDate: null
       };
-      this.userService.createUser(user).subscribe(
+      this.subscription = this.userService.createUser(user).subscribe(
         () => {
           console.log('Created well');
           this.successful = true;
@@ -63,6 +65,10 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
