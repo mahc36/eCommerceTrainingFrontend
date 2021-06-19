@@ -4,17 +4,16 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserLayoutComponent } from './user-layout/user-layout.component';
 
 @NgModule({
   declarations: [
     UserListComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    UserLayoutComponent
   ],
   imports: [
-    RouterModule.forChild([
-      {path: 'users', component: UserListComponent},
-      {path: 'register', component: UserRegistrationComponent}
-    ]),
+    RouterModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule
@@ -22,6 +21,7 @@ import { CommonModule } from '@angular/common';
   exports: [
     UserListComponent,
     UserRegistrationComponent
-  ]
+  ],
+  bootstrap : [UserLayoutComponent]
 })
 export class UserModule { }
