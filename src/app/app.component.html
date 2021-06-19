@@ -1,15 +1,9 @@
-<nav class="navbar navbar-light bg-light justify-content-between">
-  <div class="container">
-    <a class="navbar-brand" ><h5>Welcome to {{title}}</h5></a>
-    <ul class='nav nav-pills'>
-      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/users']">Users</a></li>
-      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/register']">Register</a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="container">
-  <div class="tra-container">
-    <router-outlet></router-outlet>
-  </div>
+<div class="header">
+  <app-header></app-header>
+</div>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+<div class="footer">
+  <app-footer></app-footer>
 </div>
